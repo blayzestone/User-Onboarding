@@ -13,6 +13,7 @@ function App() {
     name: '',
     email: '',
     password: '',
+    tos: '',
   }
   const formSchema = yup.object().shape({
     name: yup
@@ -27,6 +28,8 @@ function App() {
       .string()
       .required('Password is required')
       .min(8, 'Password must be at least 8 characters long'),
+    tos: yup
+      .string()
   });
 
   const [formValues, setFormValues] = useState(initialFormValues);

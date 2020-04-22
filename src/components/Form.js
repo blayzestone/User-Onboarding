@@ -79,12 +79,12 @@ function Form(props) {
           />
         </Label>
 
+        <ErrorMessage>{errors.tos}</ErrorMessage>
         <Label>Terms of Service:
           <input
-            onChange={onInputChange} 
+            onChange={onInputChange}
             type="checkbox" 
             name="tos"
-            id="tos"
           />
         </Label>
         <Button onClick={onSubmit}>Submit</Button>
