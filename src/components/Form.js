@@ -34,7 +34,7 @@ const ErrorMessage = styled.span`
 const Button = styled.button`
   width: 50%;
   color: white;
-  background-color: #60EE60;
+  background-color: ${props => props.disabled ? '#8B0000' : '#60EE60'};
   border: none;
   border-radius: 3px;
   padding: 0.5rem 0;
@@ -47,14 +47,14 @@ const Button = styled.button`
 
 
 function Form(props) {
-  const { onInputChange, onSubmit, errors } = props;
+  const { onInputChange, onSubmit, errors, submitDisabled } = props;
   return (
     <FormContainer>
       <StyledForm>
         <ErrorMessage>{errors.name}</ErrorMessage>
         <Label>Name:
           <Input
-            onChange={onInputChange} 
+            onChange={onInputChange}
             type="text" 
             name="name"
           />
@@ -87,7 +87,10 @@ function Form(props) {
             name="tos"
           />
         </Label>
-        <Button onClick={onSubmit}>Submit</Button>
+        {!submitDisabled 
+          ? <Button onClick={onSubmit}>Submit</Button> 
+          : <Button disabled={submitDisabled}>Submit</Button>
+        }
       </StyledForm>
     </FormContainer>
   );

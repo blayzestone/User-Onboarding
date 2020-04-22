@@ -35,6 +35,7 @@ function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [users, setUsers] = useState([]);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
   const inputChangeHandler = evt => {
     const name = evt.target.name;
@@ -43,6 +44,7 @@ function App() {
     yup.reach(formSchema, name)
       .validate(value)
       .then(() => {
+        setSubmitDisabled(false);
         return setFormErrors({
           ...formErrors,
           [name]: ''
@@ -50,6 +52,7 @@ function App() {
       })
       .catch(err => {
         const error = err.errors[0];
+        setSubmitDisabled(true);
 
         return setFormErrors({
           ...formErrors,
@@ -81,6 +84,7 @@ function App() {
         onInputChange={inputChangeHandler}
         onSubmit={submitHandler}
         errors={formErrors}
+        submitDisabled={submitDisabled}
       />
         {users.map(user => {
           return <pre key={user.id}>{JSON.stringify(user)}</pre>
