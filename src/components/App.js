@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Form from './Form';
 import * as yup from 'yup';
+import Axios from 'axios';
 
 function App() {
   const initialFormValues = {
@@ -30,6 +31,7 @@ function App() {
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [users, setUsers] = useState([]);
 
   const inputChangeHandler = evt => {
     const name = evt.target.name;
@@ -58,12 +60,28 @@ function App() {
     });
   }
 
+  const submitHandler = evt => {
+    evt.preventDefault();
+
+    return Axios.post('https://reqres.in/api/users', formValues)
+      .then(res => {
+        return setUsers([
+          ...users,
+          res.data
+        ])
+      });
+  }
+
   return (
     <div className="App">
       <Form 
         onInputChange={inputChangeHandler}
+        onSubmit={submitHandler}
         errors={formErrors}
       />
+        {users.map(user => {
+          return <pre key={user.id}>{JSON.stringify(user)}</pre>
+        })}
     </div>
   );
 }

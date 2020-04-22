@@ -1,8 +1,7 @@
 import React from 'react';
 
 function Form(props) {
-  const { onInputChange, errors } = props;
-  console.log(errors);
+  const { onInputChange, onSubmit, errors } = props;
   return (
     <form>
       <label htmlFor="name">Name:</label>
@@ -33,7 +32,7 @@ function Form(props) {
         name="tos"
         id="tos"
       />
-      <button>Submit</button>
+      <button onClick={onSubmit}>Submit</button>
     </form>
   );
 }
