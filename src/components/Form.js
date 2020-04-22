@@ -1,26 +1,36 @@
 import React from 'react';
 
-function Form() {
+function Form(props) {
+  const { onInputChange, errors } = props;
+  console.log(errors);
   return (
     <form>
-      <label for="name">Name:</label>
-      <input 
+      <label htmlFor="name">Name:</label>
+      <input
+        onChange={onInputChange} 
         type="text" 
+        name="name"
         id="name"
-      />
-      <label for="email">Email:</label>
+      /><span>{errors.name}</span>
+      <label htmlFor="email">Email:</label>
       <input 
-        type="text" 
+        onChange={onInputChange} 
+        type="text"
+        name="email"
         id="email"
-      />
-      <label for="password">Password:</label>
+      /><span>{errors.email}</span>
+      <label htmlFor="password">Password:</label>
       <input 
-        type="text" 
+        onChange={onInputChange} 
+        type="text"
+        name="password"
         id="password"
-      />
-      <label for="tos">Terms of Service:</label>
-      <input 
+      /><span>{errors.password}</span>
+      <label htmlFor="tos">Terms of Service:</label>
+      <input
+        onChange={onInputChange} 
         type="checkbox" 
+        name="tos"
         id="tos"
       />
       <button>Submit</button>
