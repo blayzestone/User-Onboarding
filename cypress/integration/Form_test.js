@@ -23,5 +23,8 @@ describe('Form', () => {
       cy.get('input[name="tos"]')
       .check()
       .should('have.checked')
+
+    cy.contains('Submit')
+      .click()
   })
 });
