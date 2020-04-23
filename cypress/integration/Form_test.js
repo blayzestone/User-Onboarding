@@ -19,5 +19,9 @@ describe('Form', () => {
     cy.get('input[name="password"]')
       .type(password)
       .should('have.value', password)
+
+      cy.get('input[name="tos"]')
+      .check()
+      .should('have.checked')
   })
 });
