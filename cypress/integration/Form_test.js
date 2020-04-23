@@ -1,5 +1,6 @@
 const name = "John"
 const email = "john@gmail.com"
+const password = "pass1234"
 
 describe('Form', () => {
   it('can navigate to site', () => {
@@ -14,5 +15,9 @@ describe('Form', () => {
     cy.get('input[name="email"]')
       .type(email)
       .should('have.value', email)
+
+    cy.get('input[name="password"]')
+      .type(password)
+      .should('have.value', password)
   })
 });
