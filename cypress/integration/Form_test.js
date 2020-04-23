@@ -26,5 +26,11 @@ describe('Form', () => {
 
     cy.contains('Submit')
       .click()
+
+    cy.get('input[name="password"]')
+      .clear(password)
+
+    cy.contains('is required')
+
   })
 });
